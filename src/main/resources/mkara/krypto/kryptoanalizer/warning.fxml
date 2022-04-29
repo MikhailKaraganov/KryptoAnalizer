@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="159.0" prefWidth="317.0" style="-fx-border-color: red; -fx-border-width: 6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mkara.krypto.kryptoanalizer.warningController">
+   <children>
+      <Pane layoutX="59.0" layoutY="17.0" prefHeight="34.0" prefWidth="200.0">
+         <children>
+            <Text fill="#b52727" layoutX="39.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Warning!">
+               <font>
+                  <Font name="Bodoni MT" size="31.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text fx:id="warning_text" layoutX="33.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="251.13671875">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="ok_button" layoutX="127.0" layoutY="120.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-radius: 6;" text="OK" />
+   </children>
+</AnchorPane>

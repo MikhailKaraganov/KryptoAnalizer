@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="901.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mkara.krypto.kryptoanalizer.Controller">
+  <tabs>
+    <Tab text="Code\Decode">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="button" disable="true" layoutX="301.0" layoutY="587.0" mnemonicParsing="false" text="Execute" />
+                  <TextField fx:id="path_field" layoutX="90.0" layoutY="587.0"/>
+                  <TextField fx:id="key_field" layoutX="90.0" layoutY="550.0" />
+                  <Text layoutX="36.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key" />
+                  <Text layoutX="18.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path to file" />
+                  <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="495.0" prefWidth="395.0">
+                     <children>
+                        <TextArea fx:id="text_field" layoutX="14.0" layoutY="14.0" prefHeight="470.0" prefWidth="372.0" />
+                        <Text layoutX="26.0" layoutY="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source Text" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="492.0" layoutY="14.0" prefHeight="495.0" prefWidth="395.0">
+                     <children>
+                        <TextArea fx:id="text_field1" layoutY="13.0" prefHeight="470.0" prefWidth="372.0" />
+                     </children>
+                  </AnchorPane>
+                  <Text layoutX="491.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ModifiedText" />
+                  <ChoiceBox fx:id="cocdeDecodeChoiseBox" layoutX="265.0" layoutY="550.0" prefWidth="150.0" />
+                  <Text layoutX="301.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code/Decode?" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="BruteForce">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
