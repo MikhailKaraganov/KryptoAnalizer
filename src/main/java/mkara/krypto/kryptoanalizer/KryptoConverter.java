@@ -7,17 +7,22 @@ import java.util.Arrays;
 public class KryptoConverter {
     public static String currentSrcText = "";
     public static String currentModText = "";
+    public static String resPas = "";
     private static final String charArrRusSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" +
                                                     "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" +
                                                     ".,!?\":- ";
     private static final int charArrSize = charArrRusSymbols.length();
 
 
+
     public static void CodeDecode (String sourcePath, int key){
+        currentModText = "";
+        currentSrcText = "";
         if (key>=charArrSize){
             key = key % charArrSize;
         }
         String resultPath = Path.of(sourcePath).getParent() + "\\modified_result_" + Path.of(sourcePath).getFileName();
+        resPas = resultPath;
         char[] bufferIn = new char[1024];
         char[] bufferOut;
         try(BufferedReader input = new BufferedReader(new FileReader(sourcePath));
@@ -94,9 +99,6 @@ public class KryptoConverter {
             return false;
         }
     }
-
-
-//    public static
 
 
 

@@ -9,13 +9,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
+
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
-import java.util.ResourceBundle;
+
 
 public class Controller {
     static String path;
@@ -26,6 +26,9 @@ public class Controller {
 
     @FXML
     private Button button;
+
+    @FXML
+    private Text modFileName;
 
     @FXML
     private TextField key_field;
@@ -41,6 +44,12 @@ public class Controller {
 
     @FXML
     private ChoiceBox<String> cocdeDecodeChoiseBox;
+
+    @FXML
+    private Text ModTextExample;
+
+    @FXML
+    private Text SrcTextExample;
 
     @FXML
     void initialize() {
@@ -75,14 +84,20 @@ public class Controller {
         });
 
         button.setOnAction(actionEvent -> {
-            text_field.setText("");
-            text_field1.setText("");
+//            text_field.setText("");
+//            text_field1.setText("");
             if (cocdeDecodeChoiseBox.getValue().equals("Code")){
                 KryptoConverter.CodeDecode(path_field.getText(), Integer.parseInt(key_field.getText()));
             }
             else{
                 KryptoConverter.CodeDecode(path_field.getText(), (-1) * Integer.parseInt(key_field.getText()));
             }
+
+            SrcTextExample.setText(path_field.getText() + " Example");
+            ModTextExample.setText("Result example");
+
+            modFileName.setText(KryptoConverter.resPas);
+
             text_field.setText(KryptoConverter.currentSrcText);
             text_field1.setText(KryptoConverter.currentModText);
 
