@@ -1,14 +1,12 @@
 package mkara.krypto.kryptoanalizer;
 
+import javafx.beans.value.WeakChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,6 +24,9 @@ public class Controller {
 
     @FXML
     private Button button;
+
+    @FXML
+    private Button crackButton;
 
     @FXML
     private Text modFileName;
@@ -49,11 +50,30 @@ public class Controller {
     private Text ModTextExample;
 
     @FXML
+    private TextField path_field_bf;
+
+    @FXML
     private Text SrcTextExample;
+
+    @FXML
+    private Text srcTextExample1;
+
+    @FXML
+    private TextArea text_fieldBF;
+
+    @FXML
+    private TextArea text_field1BF;
+
+    @FXML
+    private Text keyText;
+
+    @FXML
+    private Text crackedFilePath;
 
     @FXML
     void initialize() {
         cocdeDecodeChoiseBox.setItems(codeOrDecodeItem);
+        keyText.setText("0");
 
         cocdeDecodeChoiseBox.paddingProperty().addListener((observable, oldText, newText)-> {
             if(conditionsOk()){
@@ -71,7 +91,6 @@ public class Controller {
             else{
                 setButtonDisable();
             }
-
         });
 
         path_field.textProperty().addListener((observable, oldText, newText)-> {
@@ -84,8 +103,7 @@ public class Controller {
         });
 
         button.setOnAction(actionEvent -> {
-//            text_field.setText("");
-//            text_field1.setText("");
+
             if (cocdeDecodeChoiseBox.getValue().equals("Code")){
                 KryptoConverter.CodeDecode(path_field.getText(), Integer.parseInt(key_field.getText()));
             }
@@ -103,6 +121,31 @@ public class Controller {
 
         });
 
+        path_field_bf.textProperty().addListener((observable, oldText, newText)->{
+            if (Path.of(path_field_bf.getText()).isAbsolute()){
+                setCrackButtonEnable();
+            }
+        });
+
+        keyText.textProperty().addListener((observable, oldText, newText)->{
+            text_field1BF.setText(KryptoConverter.currentDecodedText);
+        });
+
+        crackButton.setOnAction(actionEvent -> {
+                srcTextExample1.setText((path_field_bf.getText() + " Example"));
+
+
+
+//                KryptoConverter.bruteForceCrack(path_field_bf.getText());
+                int key = KryptoConverter.bruteForceCrack(path_field_bf.getText());
+                keyText.setText(String.valueOf(key));
+                KryptoConverter.CodeDecode(path_field_bf.getText(), -key);
+
+                crackedFilePath.setText(KryptoConverter.resPas);
+                text_fieldBF.setText(KryptoConverter.currentCodedText);
+                text_field1BF.setText(KryptoConverter.currentDecodedText);
+
+        });
     }
 
     private void warningWindowShow (){
@@ -139,7 +182,9 @@ public class Controller {
         button.setDisable(true);
     }
 
-//    private void fileChooser (){
-//        FileChooser
-//    }
+    public void setCrackButtonEnable() {crackButton.setDisable(false);}
+    public void setCrackButtonDisable() {crackButton.setDisable(true);}
+
+
+
 }
