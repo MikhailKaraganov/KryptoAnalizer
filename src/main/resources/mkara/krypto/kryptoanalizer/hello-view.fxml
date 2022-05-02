@@ -38,7 +38,7 @@
                   <Text fx:id="ModTextExample" layoutX="491.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modified Text Example" />
                   <ChoiceBox fx:id="cocdeDecodeChoiseBox" layoutX="256.0" layoutY="549.0" prefWidth="150.0" />
                   <Text layoutX="292.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code/Decode?" />
-                  <Text fx:id="modFileName" layoutX="510.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="1.0" />
+                  <Text fx:id="modFileName" layoutX="441.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" text="..." textAlignment="JUSTIFY" wrappingWidth="381.0" />
                   <Text layoutX="600.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result path:" />
                </children>
             </AnchorPane>

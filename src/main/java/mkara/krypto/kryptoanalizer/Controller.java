@@ -103,22 +103,19 @@ public class Controller {
         });
 
         button.setOnAction(actionEvent -> {
-
+//            Если передан отрицательный ключ (строка), тогда извлекаем интовое отрицательное значение
+            int key = key_field.getText().charAt(0) == '-' ? -1 * Integer.parseInt(key_field.getText().substring(1)) : Integer.parseInt(key_field.getText()) ;
             if (cocdeDecodeChoiseBox.getValue().equals("Code")){
-                KryptoConverter.CodeDecode(path_field.getText(), Integer.parseInt(key_field.getText()));
+                KryptoConverter.CodeDecode(path_field.getText(), key);
             }
             else{
-                KryptoConverter.CodeDecode(path_field.getText(), (-1) * Integer.parseInt(key_field.getText()));
+                KryptoConverter.CodeDecode(path_field.getText(), (-1) * key);
             }
-
             SrcTextExample.setText(path_field.getText() + " Example");
             ModTextExample.setText("Result example");
-
             modFileName.setText(KryptoConverter.resPas);
-
             text_field.setText(KryptoConverter.currentSrcText);
             text_field1.setText(KryptoConverter.currentModText);
-
         });
 
         path_field_bf.textProperty().addListener((observable, oldText, newText)->{
@@ -127,27 +124,19 @@ public class Controller {
             }
         });
 
-        keyText.textProperty().addListener((observable, oldText, newText)->{
-            text_field1BF.setText(KryptoConverter.currentDecodedText);
-        });
-
         crackButton.setOnAction(actionEvent -> {
-                srcTextExample1.setText((path_field_bf.getText() + " Example"));
-
-
-
-//                KryptoConverter.bruteForceCrack(path_field_bf.getText());
                 int key = KryptoConverter.bruteForceCrack(path_field_bf.getText());
                 keyText.setText(String.valueOf(key));
                 KryptoConverter.CodeDecode(path_field_bf.getText(), -key);
 
+                text_fieldBF.setText(KryptoConverter.currentSrcText);
+                text_field1BF.setText(KryptoConverter.currentModText);
+                srcTextExample1.setText((path_field_bf.getText() + " Example"));
                 crackedFilePath.setText(KryptoConverter.resPas);
-                text_fieldBF.setText(KryptoConverter.currentCodedText);
-                text_field1BF.setText(KryptoConverter.currentDecodedText);
-
         });
     }
 
+//    Окно предупреждения - не используется
     private void warningWindowShow (){
         try {
             FXMLLoader fxmlLoaderWarning = new FXMLLoader(KryptoApplication.class.getResource("warning.fxml"));
@@ -160,14 +149,30 @@ public class Controller {
         }
     }
 
+//          Метод проверки значений полей ввода:
+//          -Абсолютный путь к .txt файлу
+//          -Что то выбрано в поле выбора
+//          -Ключ не пустая строка, и обработка вариантов с минусом и без
     public boolean conditionsOk(){
         try {
             if (path_field.getText()!=null && path_field.getText().contains(".txt") &&
-                    Path.of(path_field.getText()).isAbsolute() &&
-                    Integer.parseInt(key_field.getText())>0 &&
-            cocdeDecodeChoiseBox.getValue() != null) {
-                return true;
+                Path.of(path_field.getText()).isAbsolute() && cocdeDecodeChoiseBox.getValue() != null) {
+                    if(!key_field.getText().equals("")) {
+                        if(key_field.getText().length() > 1){
+                            if((key_field.getText().charAt(0) == '-' && Character.isDigit(key_field.getText().charAt(1))) ||
+                                    Character.isDigit(key_field.getText().charAt(0))){
+                                return true;
+                            }
+                            if (key_field.getText().length() == 1 && Character.isDigit(key_field.getText().charAt(0))) {
+                                return true;
+                            }
+                        }
+                    }
             }
+        }
+        catch (NumberFormatException numberFormatException) {
+            System.out.println("Не введен ключ");
+            conditionsOk();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -177,14 +182,9 @@ public class Controller {
     public void setButtonEnable(){
         button.setDisable(false);
     }
-
     public void setButtonDisable(){
         button.setDisable(true);
     }
-
     public void setCrackButtonEnable() {crackButton.setDisable(false);}
     public void setCrackButtonDisable() {crackButton.setDisable(true);}
-
-
-
 }
