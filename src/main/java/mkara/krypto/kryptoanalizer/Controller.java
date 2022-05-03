@@ -1,6 +1,6 @@
 package mkara.krypto.kryptoanalizer;
 
-import javafx.beans.value.WeakChangeListener;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,11 +16,8 @@ import java.nio.file.Path;
 
 
 public class Controller {
-    static String path;
-    static int key;
     static String textWarning;
     ObservableList<String> codeOrDecodeItem = FXCollections.observableArrayList("Code", "Decode");
-    static int enteredKey;
 
     @FXML
     private Button button;

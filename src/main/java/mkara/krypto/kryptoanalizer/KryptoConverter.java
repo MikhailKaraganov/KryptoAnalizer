@@ -1,6 +1,7 @@
 package mkara.krypto.kryptoanalizer;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 import java.util.HashMap;
@@ -28,8 +29,8 @@ public class KryptoConverter {
         resPas = resultPath;
         char[] bufferIn = new char[1024];
         char[] bufferOut;
-        try(BufferedReader input = new BufferedReader(new FileReader(sourcePath));
-            BufferedWriter output = new BufferedWriter(new FileWriter(resultPath)))
+        try(BufferedReader input = new BufferedReader(new FileReader(sourcePath, StandardCharsets.UTF_8));
+            BufferedWriter output = new BufferedWriter(new FileWriter(resultPath, StandardCharsets.UTF_8)))
         {
             while (input.ready()) {
                 int real = input.read(bufferIn);
@@ -63,7 +64,7 @@ public class KryptoConverter {
     }
 
     public static int bruteForceCrack (String sourcePath){
-        try (BufferedReader input = new BufferedReader(new FileReader(sourcePath))){
+        try (BufferedReader input = new BufferedReader(new FileReader(sourcePath, StandardCharsets.UTF_8))){
             char[] bufferIn = new char[6400];
             char[] bufferOut;
             boolean stop = false;
