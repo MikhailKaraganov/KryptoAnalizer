@@ -1,6 +1,6 @@
 package mkara.krypto.kryptoanalizer;
 
-import javafx.beans.value.WeakChangeListener;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,11 +16,8 @@ import java.nio.file.Path;
 
 
 public class Controller {
-    static String path;
-    static int key;
     static String textWarning;
     ObservableList<String> codeOrDecodeItem = FXCollections.observableArrayList("Code", "Decode");
-    static int enteredKey;
 
     @FXML
     private Button button;
@@ -158,7 +155,7 @@ public class Controller {
             if (path_field.getText()!=null && path_field.getText().contains(".txt") &&
                 Path.of(path_field.getText()).isAbsolute() && cocdeDecodeChoiseBox.getValue() != null) {
                     if(!key_field.getText().equals("")) {
-                        if(key_field.getText().length() > 1){
+                        if(key_field.getText().length() >= 1){
                             if((key_field.getText().charAt(0) == '-' && Character.isDigit(key_field.getText().charAt(1))) ||
                                     Character.isDigit(key_field.getText().charAt(0))){
                                 return true;
